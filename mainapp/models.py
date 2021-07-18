@@ -21,6 +21,7 @@ class User(db.Model,UserMixin):
   created_date = db.Column(db.DateTime,default=datetime.utcnow, index=True)
   user_profile_img = db.Column(db.String, default='pic.png')
   events = db.relationship('Event',backref='organiser', lazy=True)
+ 
 
   def __repr__(self) -> str:
       return  self.name
@@ -50,4 +51,20 @@ class Event(db.Model):
 
     def __repr__(self) -> str:
       return self.title
+
+
+
+class EventRegitration(db.Model,UserMixin):
+
+  __tablename__ = 'eregistries'
+
+  id = db.Column(db.Integer,primary_key = True)
+  user_id = db.Column(db.Integer,nullable=False)
+  event_id = db.Column(db.Integer,nullable=False)
+
+
+
+  def __repr__(self) -> str:
+      return  self.name
+
 

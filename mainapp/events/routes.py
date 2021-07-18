@@ -114,3 +114,5 @@ def city_loc(name):
   events = Event.query.filter_by(location=name).order_by(Event.start.asc()).all()
   return render_template('city_view.html', title='Events in',events=events,locate=locate )
   
+
+
