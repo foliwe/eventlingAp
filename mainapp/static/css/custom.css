@@ -1,0 +1,138 @@
+body{
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.green{
+  background-color: #16a085;
+  color: white;
+  padding: 3px 8px;
+  text-decoration: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: bold;
+}
+section.main{
+  position: relative;
+}
+
+.background_gradiant{
+  height: 600px;
+  background: linear-gradient(0deg, rgb(65, 1, 20) 20%, rgb(10, 110, 156) 100%);
+  position: relative;
+}
+/**.splide {
+  padding: 0em;
+}
+.splide__arrow svg {
+  width: 15.5em;
+  height: 1em;
+  fill: #9c9c9c;
+  transition: fill .2s linear;
+}
+
+.sponsor img{
+  width: 40%;
+}
+**/
+
+.spondsors{
+  margin: auto;
+  width: 60%;
+}
+.show_content{
+  max-width: 1000px;
+  margin: auto;
+ position: absolute;
+ top: 150px;
+}
+.show_img_div{
+  position: relative;
+ 
+}
+
+.show_date{
+  background-color: white;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 3px 15px;
+  color: #626262d2;
+}
+
+.day{
+  font-size: 40px;
+  margin: 0;
+}
+.day, .month ,.start, .venue{ 
+  align-self: center;
+}
+.month{
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.venue{
+  text-transform: uppercase;
+  font-size: 12px;
+ }
+.start{
+  text-transform: uppercase;
+  font-size: 11px;
+ }
+.search input[type=text]{
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.search_botton{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.poster{
+  position: relative;
+  background-color: brown;
+  width: 100%;
+}
+
+.carousel-caption{
+  width: 200px;
+  font-size: 14;
+  background: rgb(0,36,24);
+  background: linear-gradient(0deg, rgba(190, 13, 66, 0.781) 34%, rgba(26, 110, 200, 0.76) 100%);
+  display: grid;
+  place-content: center;
+}
+
+.offcanvas-body a{
+  text-decoration: none
+}
+
+@media (min-width: 768px) { 
+
+  .carousel-caption{
+    width: 400px;
+    font-size: 14;
+  }
+}
+
+section.footer{
+background-color: black;
+}
+
+.caps{
+  text-transform: uppercase;
+}
+
+.foot_ul{
+  color: #fff;
+}
+
+.foot_ul ul{
+  list-style: none;
+}
+.foot_ul li{
+  font-size: 14px;
+  padding: 4px 0;
+ 
+}

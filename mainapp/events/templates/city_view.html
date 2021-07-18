@@ -1,0 +1,73 @@
+{% extends 'shared/_base.html' %}
+
+{% block title %} {{super()}}{{title}}{% endblock %}
+
+{%block content%}
+<div class="container">
+  
+  <div class="my-4 py-4">
+    <h2 class="text-center my-4">Events in {{locate}}</h2>
+
+   
+    
+  <div class="row">
+    {%if events|length == 0%}
+    <div class="alert alert-warning" role="alert">
+      Sorry, {{locate}} has no Upcoming events
+    </div>
+
+    {% else %}
+    {%for event in events%}
+     
+    <div class="col-sm-3">
+      <div class="card mb-4 shadow-sm">
+        <img src="{{url_for('static',filename='images/event_images/thumbnail/' + event.feature_image)}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <div class=" fw-bold pb-2"><a href="{{url_for('events.event', event_id=event.id)}}">{{event.title}}</a></div>
+            <p class="card-text">{{event.description | truncate(90, True)}}</p>
+            <div class="d-flex flex-row text-muted lh-lg">
+              <span class="me-3 mb-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                  <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                  <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                </svg>
+              </span>
+              <span> From: {{event.start.strftime('%b %d')}} to  {{event.end.strftime('%b %d')}} </span>
+            </div>
+            
+            <div class="d-flex flex-row text-muted">
+              <span class="me-3 mb-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg> 
+                </span> 
+              <span>{{event.location}}</span> 
+            </div> 
+            <div class="d-flex flex-row text-muted">
+              <span class="me-3 mb-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                  </svg> 
+                </span>
+                <span>  From {{event.start_time.strftime('%H:%M')}} to {{event.end_time.strftime('%H:%M')}}</span> 
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <div class="">Price:</div>
+          <div class="">{{event.ticket_price}} CFA</div>
+        </div>
+      </div>
+    </div>
+   
+  {%endfor%}
+    {%endif%}
+    
+  
+  </div>
+</div>
+</div>
+
+
+{% endblock %}
