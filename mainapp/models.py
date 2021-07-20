@@ -56,4 +56,18 @@ class Event(db.Model):
 
 
 
+class EventRegistration(db.Model):
+
+    __tablename__ = 'events_registrations'
+
+    id = db.Column(db.Integer,primary_key = True)
+    user_id = db.Column(db.Integer)
+    event_id = db.Column(db.Integer)
+    source = db.Column(db.String(120),)
+    terms_and_conditions = db.Column(db.Boolean,default=False)
+
+    def __repr__(self) -> str:
+      return self.user_id
+
+
 

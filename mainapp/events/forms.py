@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import  StringField, SubmitField,TextAreaField, IntegerField, DecimalField,DateTimeField
+from wtforms import  StringField, SubmitField,TextAreaField, IntegerField, DecimalField,DateTimeField,BooleanField
 from wtforms.validators import DataRequired
 
 
@@ -17,5 +17,8 @@ class NewEvent(FlaskForm):
     location = StringField('Event Location', validators=[DataRequired()])
     total_tickets = IntegerField('Number Of Tickets Available')
     ticket_price = DecimalField('Tiket Price',validators=[DataRequired()])
-
     submit = SubmitField('Submit')
+
+class Register(FlaskForm):
+    terms_and_conditions = BooleanField('Accepts Terms and Conditions', validators=[DataRequired()])
+    submit = SubmitField('Confirm Event Registration')

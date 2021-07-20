@@ -34,11 +34,14 @@ def create_app(config_class=Config):
   from mainapp.main.routes import main
   from mainapp.errors.handlers import  errors
   from mainapp.register.routes import  register
+  from mainapp.events_reg.routes import event_reg
+
 
   app.register_blueprint(users)
   app.register_blueprint(events)
   app.register_blueprint(main)
   app.register_blueprint(errors)
   app.register_blueprint(register)
+  app.register_blueprint(event_reg)
 
   return app

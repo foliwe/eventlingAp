@@ -1,7 +1,7 @@
 from flask import Blueprint 
 from flask import render_template, render_template, request, url_for, redirect,flash, abort
 from flask_login import current_user, login_required
-from mainapp.events.forms import NewEvent
+from mainapp.events.forms import NewEvent ,Register
 from mainapp.models import Event
 from mainapp import db
 from mainapp.events.utils import event_picture
@@ -120,6 +120,10 @@ def city_loc(name):
 @events.route('/calender')
 def calender():
   return render_template('calender.html', title='All Events')
+
+
+
+
 
 
 

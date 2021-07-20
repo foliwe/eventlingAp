@@ -66,9 +66,7 @@
               <div class="  w-50 text-center ">
                 
                 <span class="btn btn-danger"> {{event.ticket_price}} CFA</span> <br>
-                <button type="button" class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Register
-                </button>
+                <a class="btn btn-success" href="{{url_for('event_registrations.event_registrations',event_id=event.id)}}"> Register</a>
                 <p>
                   <div class="spondsors">
                     <h6>SPONSORS</h6>
@@ -93,7 +91,7 @@
                         <span class="visually-hidden">Next</span>
                       </button>
                     </div>
-                   
+
                     <a href="" class="green"> Be A Sponsor</a>
                   </div>
                 </p>
@@ -142,29 +140,6 @@
       </div>
    </div>
 
-   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Registering {{event.title}}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-              Accepts Terms and Conditions
-            </label>
-          </div>
-          <a href="">Terms and Conditions</a>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Confirm Registrataion</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 {% endblock %}
 
