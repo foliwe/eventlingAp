@@ -26,7 +26,9 @@ def new_event():
     end_date = form.end.data
     start_time = form.start_time.data
     end_time = form.end_time.data
-    image= event_picture(form.feature_image.data)
+    if form.feature_image.data:
+      image= event_picture(form.feature_image.data) 
+      image = image
 
     event = Event(title=title,
                   description=description,
@@ -37,7 +39,6 @@ def new_event():
                   end=end_date, 
                   start_time=start_time, 
                   end_time=end_time,
-                  feature_image = image,
                   user_id = current_user.id
                   )
     db.session.add(event)

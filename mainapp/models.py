@@ -36,7 +36,7 @@ class Event(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(60), nullable=False)
     description = db.Column(db.String, nullable=False)
-    feature_image = db.Column(db.String, default='event.png')
+    feature_image = db.Column(db.String, nullable=True, default='event.png')
 
     start = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, index=True)
     end = db.Column(db.DateTime, nullable=False, default=datetime.utcnow,index=True)
