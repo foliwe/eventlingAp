@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/themes/splide-sea-green.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/main.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='/css/custom.css') }}">
   <title>{% block title %} CamEventsHup |  {% endblock %}</title>
 </head>
@@ -44,6 +45,7 @@
 
   <script src="{{ url_for('static', filename='/js/bootstrap.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+  <script src="{{ url_for('static', filename='/js/main.js') }}"></script>
   <script>
     document.addEventListener( 'DOMContentLoaded', function () {
       new Splide( '.splide',{
@@ -53,6 +55,17 @@
         perPage: 3
       }).mount();
     } );
+    </script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+    
     </script>
 </body>
 </html>

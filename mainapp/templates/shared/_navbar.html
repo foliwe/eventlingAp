@@ -34,7 +34,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto">
             <a class="nav-link active" aria-current="page" href="/">All Events</a>
-            <a class="nav-link" href="calender.html">Calender</a>
+            <a class="nav-link" href="{{url_for('events.calender')}}">Calender</a>
           </div>
           <div class="ms-auto">
              <a class="nav-link bg-danger text-white rounded-pill" href="{{url_for('events.new_event')}}">Submit an Event</a> 

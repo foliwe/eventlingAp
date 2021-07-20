@@ -3,7 +3,7 @@
 {% block title %} {{super()}}{{title}}{% endblock %}
 
 {%block content%}
-<section class="main">
+
   <div class="background_gradiant d-flex justify-content-center">
       <div class="show_content bg-white shadow-lg w-60 ">
         <div class="show_img_div">
@@ -120,7 +120,7 @@
                   {%for event in nearby_events%}
                     <li class="splide__slide">
                       <div class="card mb-4 shadow-sm mx-2">
-                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+                        <img src="{{poster_img}}" class="card-img-top" alt="...">
                         <div class="card-body">
                           <div class=" fw-bold pb-2"><a href="{{url_for('events.event',event_id=event.id)}}">{{event.title}}</a></div>
                         </div>
@@ -138,6 +138,6 @@
            </div>
       </div>
    </div>
-</section>
+
 
 {% endblock %}

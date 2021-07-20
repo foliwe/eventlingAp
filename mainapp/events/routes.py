@@ -49,7 +49,7 @@ def new_event():
 @events.route('/event/<event_id>')
 def event(event_id):
   event= Event.query.get_or_404(event_id)
-  nearby_events = Event.query.filter_by(location=event.location)
+  nearby_events = Event.query.filter_by(location=event.location).all()
   poster_img = url_for('static',filename='images/event_images/' + event.feature_image)
   return render_template('event.html', title=f"{event.title}", event=event,nearby_events=nearby_events, poster_img=poster_img)
 
@@ -114,5 +114,11 @@ def city_loc(name):
   events = Event.query.filter_by(location=name).order_by(Event.start.asc()).all()
   return render_template('city_view.html', title='Events in',events=events,locate=locate )
   
+
+
+@events.route('/calender')
+def calender():
+  return render_template('calender.html', title='All Events')
+
 
 
