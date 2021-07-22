@@ -64,9 +64,12 @@
                 </div>
               </div>
               <div class="  w-50 text-center ">
-                
+
+               
                 <span class="btn btn-danger"> {{event.ticket_price}} CFA</span> <br>
-                <a class="btn btn-success" href="{{url_for('event_registrations.event_registrations',event_id=event.id)}}"> Register</a>
+                {% if current_user.is_authenticated and event not in current_user.events%}
+                <a class="btn btn-success my-2" href="{{url_for('events.register_event',event_id=event.id)}}"> Register For Event</a>
+                {%endif%}
                 <p>
                   <div class="spondsors">
                     <h6>SPONSORS</h6>
@@ -139,8 +142,8 @@
            </div>
       </div>
    </div>
-
-
+   
+   
 {% endblock %}
 
 

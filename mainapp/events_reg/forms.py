@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 
 
 
-class EventRegistrationForm(FlaskForm):
+class RegistrationForm(FlaskForm):
     source = SelectField(u'Where is you hear about this event?',
                            choices=[('google', 'Google Search'),
                           ('newpaper', 'New Paper'),

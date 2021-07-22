@@ -26,17 +26,17 @@ def new_event():
     end_date = form.end.data
     start_time = form.start_time.data
     end_time = form.end_time.data
-    image= event_picture(form.feature_image.data) 
+    image= event_picture(form.feature_image.data)
 
 
     event = Event(title=title,
                   description=description,
-                  location=location, 
-                  ticket_price=ticket_price, 
-                  total_tickets=total_tickets, 
-                  start=start_date, 
-                  end=end_date, 
-                  start_time=start_time, 
+                  location=location,
+                  ticket_price=ticket_price,
+                  total_tickets=total_tickets,
+                  start=start_date,
+                  end=end_date,
+                  start_time=start_time,
                   end_time=end_time,
                   feature_image = image,
                   user_id = current_user.id
@@ -50,10 +50,16 @@ def new_event():
 @events.route('/event/<event_id>')
 def event(event_id):
   event= Event.query.get_or_404(event_id)
-  nearby_events = Event.query.filter_by(location=event.location).all()
-  poster_img = url_for('static',filename='images/event_images/' + event.feature_image)
-  return render_template('event.html', title=f"{event.title}", event=event,nearby_events=nearby_events, poster_img=poster_img)
 
+  nearby_events = Event.query.filter_by(location=event.location).all()
+  
+  poster_img = url_for('static',filename='images/event_images/' + event.feature_image)
+  return render_template('event.html', title=f"{event.title}", event=event, 
+                          nearby_events=nearby_events, 
+                          poster_img=poster_img, 
+                          
+                          )
+          
 
 @events.route('/event/<event_id>/update',methods=['GET','POST'])
 def update_event(event_id):
@@ -124,6 +130,15 @@ def calender():
 
 
 
-
+@events.route('/register_event/<int:event_id>/', methods=['POST','GET'])
+@login_required
+def register_event(event_id):
+  event = Event.query.get_or_404(event_id)
+  if event.organiser == current_user:
+    abort(403)
+  current_user.registrations.append(event)
+  db.session.commit()
+  flash('event register','success')
+  return redirect(url_for('users.account'))
 
 

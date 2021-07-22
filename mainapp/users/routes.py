@@ -53,6 +53,7 @@ def logout():
 @login_required
 def account():
   events = current_user.events
+  registrations = current_user.registrations
   form = UpdateUserForm()
   if form.validate_on_submit():
     if form.picture.data:
@@ -69,4 +70,9 @@ def account():
 
   profile_img = url_for('static',filename='images/' + current_user.user_profile_img)
 
-  return render_template('account.html', title=f'Account for {current_user.name}', form=form, profile_img=profile_img, events=events)
+  return render_template('account.html', 
+                        title=f'Account for {current_user.name}',
+                        form=form, profile_img=profile_img, 
+                        events=events, 
+                        registrations=registrations
+                         )

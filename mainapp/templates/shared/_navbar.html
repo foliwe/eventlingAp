@@ -39,6 +39,11 @@
           <div class="ms-auto">
              <a class="nav-link bg-danger text-white rounded-pill" href="{{url_for('events.new_event')}}">Submit an Event</a> 
           </div>
+          {% if not current_user.is_authenticated%}
+          <div class="ms-auto">
+            <a class="nav-link text-white" href="{{url_for('users.login')}}">Login</a> 
+         </div>
+         {%endif%}
          {% if current_user.is_authenticated%}
           <div class="ms-3">
             <span  class="nav-link bg-danger text-white rounded-pill"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
