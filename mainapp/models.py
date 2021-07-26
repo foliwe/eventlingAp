@@ -22,7 +22,10 @@ class User(db.Model,UserMixin):
   password = db.Column(db.String(60), nullable=True)
   created_date = db.Column(db.DateTime,default=datetime.utcnow, index=True)
   user_profile_img = db.Column(db.String, default='pic.png')
+  registrations = db.relationship('Registration',backref='member', lazy=True)
   events = db.relationship('Event',backref='organiser', lazy=True)
+  
+ 
  
 
   

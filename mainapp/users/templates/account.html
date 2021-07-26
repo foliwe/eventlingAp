@@ -95,18 +95,18 @@
             </svg></a></div>
           </div>
 
-
           {%endfor%}
       </div>
     </div>
+    </div>
+
+
   </div>
-
-
+  <div class="test">
+    {% for x in attendance%}
+      {{x.title}} <br>
+    {%endfor%}
 </div>
-
-{% for event in registrations%}
-  {{event.title}}
-{%endfor%}
 </div>
  
 

@@ -2,11 +2,11 @@ from flask import Blueprint
 from flask import render_template, render_template, request, url_for, redirect,flash, abort
 from flask_login import current_user, login_required
 from mainapp.events_reg.forms import RegistrationForm
-from mainapp.models import db , Event
+from mainapp.models import db , Event, Registration
 
 
 
-event_reg = Blueprint('event_registrations',__name__,template_folder='templates' )
+event_reg = Blueprint('event_reg',__name__,template_folder='templates' )
 
 
 
@@ -15,8 +15,9 @@ event_reg = Blueprint('event_registrations',__name__,template_folder='templates'
 def event_registrations(event_id):
   form = RegistrationForm()
   event= Event.query.get_or_404(event_id)
-  if event in current_user.registrations or event in current_user.events:
-    abort(403)
+  if event.organiser == current_user:
+    return redirect(url_for('main.index'))
+
   if form.validate_on_submit():
     source = form.source.data
     user = current_user
@@ -30,3 +31,6 @@ def event_registrations(event_id):
 
 
   return render_template('event_reg.html',form=form, event=event, title=f'Registration for {event.title}')
+
+
+

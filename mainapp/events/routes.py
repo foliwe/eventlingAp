@@ -5,6 +5,7 @@ from mainapp.events.forms import NewEvent ,Register
 from mainapp.models import Event
 from mainapp import db
 from mainapp.events.utils import event_picture
+import datetime
 
 
 events = Blueprint('events',__name__,template_folder='templates' )
@@ -49,17 +50,18 @@ def new_event():
 
 @events.route('/event/<event_id>')
 def event(event_id):
+  now = datetime.datetime.now()
   event= Event.query.get_or_404(event_id)
 
-  nearby_events = Event.query.filter_by(location=event.location).all()
+ # nearby_events = Event.query.filter_by(location=event.location).all()
+  nearby_events  = Event.query.filter(Event.start > now).filter_by(location=event.location).all()
   
   poster_img = url_for('static',filename='images/event_images/' + event.feature_image)
   return render_template('event.html', title=f"{event.title}", event=event, 
                           nearby_events=nearby_events, 
                           poster_img=poster_img, 
-                          
+
                           )
-          
 
 @events.route('/event/<event_id>/update',methods=['GET','POST'])
 def update_event(event_id):
@@ -118,27 +120,15 @@ def delete_event(event_id):
 def city_loc(name):
   locate = request.args.get('filter', default = name, type = str)
   print(locate)
-  events = Event.query.filter_by(location=name).order_by(Event.start.asc()).all()
+  now = datetime.datetime.now()
+  events = Event.query.filter(Event.start > now).filter_by(location=name).order_by(Event.start.asc()).all()
   return render_template('city_view.html', title='Events in',events=events,locate=locate )
-  
+
 
 
 @events.route('/calender')
 def calender():
   return render_template('calender.html', title='All Events')
 
-
-
-
-@events.route('/register_event/<int:event_id>/', methods=['POST','GET'])
-@login_required
-def register_event(event_id):
-  event = Event.query.get_or_404(event_id)
-  if event.organiser == current_user:
-    abort(403)
-  current_user.registrations.append(event)
-  db.session.commit()
-  flash('event register','success')
-  return redirect(url_for('users.account'))
 
 

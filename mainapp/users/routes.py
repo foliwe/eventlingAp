@@ -2,7 +2,7 @@ from flask import Blueprint ,render_template, render_template, request, url_for,
 from mainapp.users.forms import  RegistrationForm, LoginForm, UpdateUserForm
 from flask_login import login_user, current_user, logout_user, login_required
 from mainapp import bcrypt, db
-from mainapp.models import User
+from mainapp.models import User, Event
 from mainapp.users.utils import save_picture
 
 
@@ -52,8 +52,13 @@ def logout():
 @users.route('/account', methods=['GET','POST'])
 @login_required
 def account():
+  attendance = []
   events = current_user.events
   registrations = current_user.registrations
+
+  for registration in registrations:
+      attendance.append(Event.query.get(registration.event_id))
+
   form = UpdateUserForm()
   if form.validate_on_submit():
     if form.picture.data:
@@ -73,6 +78,6 @@ def account():
   return render_template('account.html', 
                         title=f'Account for {current_user.name}',
                         form=form, profile_img=profile_img, 
-                        events=events, 
-                        registrations=registrations
+                        events=events, attendance=attendance
+                        
                          )
